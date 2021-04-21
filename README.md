@@ -51,6 +51,31 @@ vue extention in the components folder.
 new components tagname 
     <Header / >
 
+## Component Props
+
+1. You can define your own props to update values in component with
+the new components html tag
+    <Header title='Tasks'>
+2. Update your component file ./tracker/src/components/Header.vue to 
+recive the new string. under the name of the exported component add the props: and coresponding name in our case title with a type of string
+    export default {
+        name: 'Header',
+        props: {
+            title: {
+                type: String,
+            }
+        }
+    } 
+3. You may now call use this in your template calling the expression 
+inside our html with {{ }}
+    <template>
+        <header>
+            <h1>{{title}}</h1>
+        </header>
+    </template>
+
+
+
 ## Authors
 
 👤 **Miguel Angel Enciso Sanchez**

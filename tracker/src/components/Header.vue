@@ -1,12 +1,18 @@
 <template>
     <header>
-        <h1>Tracker</h1>
+        <h1>{{title}}</h1>
     </header>
 </template>
 
 <script>
     export default {
-        name: 'Heacer',
+        name: 'Header',
+        props: {
+            title: {
+                type: String,
+            }
+
+        }
     } 
 </script>
 
