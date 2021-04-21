@@ -86,6 +86,59 @@ Button.vue for example you can call the fuction with vue in your html
         }
     }
 
+## Passing Arrays as Props in Vue
+
+1. Inside your html components tag we pass the tasks array to 
+tasks prop inside the Tasks Component.
+    <Tasks :tasks="tasks">
+2. You need to update your component file to take in an array of data
+as a prop in your components html tag. ./tracker/src/components/Tasks.vue
+    props: {
+        tasks: Array,
+    }
+3. Then dont forget to update your ./tracker/src/App.vue file importing 
+your tasks component
+    import Tasks from './components/Tasks'
+4. Lastly reginster the component so vue can identify its name.
+    export default {
+        name: 'App',
+        components: {
+            Header,
+            Tasks
+    }
+5. I have added test data in ./tasks/src/App.vue for you to use as a test
+array this can also be modified to pull in http json if you need it
+    data() {
+        return {
+        tasks: []
+        }
+    },
+    //populates tasks: []
+    created() {
+        //this can also contain json return via GET HTTP
+        this.tasks = [
+            {
+            id: 1,
+            text: 'Doctors Appointment',
+            day: 'March 1st at 2:30pm',
+            reminder: true,
+            },
+            {
+                id: 2,
+                text: 'Meeting at School',
+                day: 'March 3rd at 1:30pm',
+                reminder: true,
+            },
+            {
+                id: 3,
+                text: 'Shopping for Food',
+                day: 'March 3rd at 11:30am',
+                reminder: false,
+            }
+        ]
+    }
+
+
 ## Authors
 
 👤 **Miguel Angel Enciso Sanchez**

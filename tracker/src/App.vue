@@ -1,16 +1,19 @@
 <template>
   <div class="container">
     <Header title="Tasks"/>
+    <Tasks :tasks="tasks"/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header'
+import Tasks from './components/Tasks'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Tasks
   },
   //test data returning array 
   data() {
