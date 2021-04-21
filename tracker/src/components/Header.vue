@@ -1,10 +1,12 @@
 <template>
     <header>
         <h1>{{title}}</h1>
+        <Button color="green" text="Add"/>
     </header>
 </template>
 
 <script>
+    import Button from './Button'
     export default {
         name: 'Header',
         props: {
@@ -12,7 +14,10 @@
                 type: String,
             }
 
-        }
+        },
+        components: {
+            Button,
+        },
     } 
 </script>
 

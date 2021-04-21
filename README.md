@@ -74,7 +74,17 @@ inside our html with {{ }}
         </header>
     </template>
 
+## Calling Functions with Vue
 
+1. Add the on click like you would with JS. In your component file 
+Button.vue for example you can call the fuction with vue in your html
+    <button @click="addTask()"><button>
+2. Update your script to register the fuction and write your code
+    methods: {
+        addTask() {
+            alert('Function good to go! Your code block can go here..')
+        }
+    }
 
 ## Authors
 
