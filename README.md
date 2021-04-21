@@ -138,6 +138,25 @@ array this can also be modified to pull in http json if you need it
         ]
     }
 
+## Looping Through Arrays 
+1. To loop and display your arrays data in your views 
+you can use the v-for directive. Update the component file 
+./tracker/src/components/Tasks.vue to display your array 
+data in the <template v-for="x in array"> tag here you define a 
+temp var name like x to use in the loop
+    <div v-for="task in tasks">
+        
+    </div>
+2. We must also provide a unique key like with react for this we will use 
+the id
+    <div :key="task.id" v-for="task in tasks">
+    </div>
+3. Finaly to access values from each object in our array we will use expressions inside of double braces {{ }}
+    <div :key="task.id" v-for="task in tasks">
+        <h3>{{ task.text }}</h3>
+    </div>
+
+
 
 ## Authors
 
