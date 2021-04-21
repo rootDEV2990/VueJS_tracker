@@ -139,6 +139,7 @@ array this can also be modified to pull in http json if you need it
     }
 
 ## Looping Through Arrays 
+
 1. To loop and display your arrays data in your views 
 you can use the v-for directive. Update the component file 
 ./tracker/src/components/Tasks.vue to display your array 
@@ -156,6 +157,27 @@ the id
         <h3>{{ task.text }}</h3>
     </div>
 
+## Passing Objects as Props in Vue
+
+1. Inside your html components tag we pass the task object to 
+task prop inside the Task Component.
+    <Task :task="task">
+2. You need to update your component file to take in an object item
+as a prop in your components html tag. ./tracker/src/components/Task.vue
+    props: {
+        tasks: Object,
+    }
+3. Then dont forget to update your ./tracker/src/components/Tasks.vue
+file importing your task component that recives the object
+    import Tasks from './components/Task'
+4. Lastly reginster the component so vue can identify its name. In 
+./tracker/src/components/Tasks.vue add components: { Task }
+    export default {
+        name: 'Tasks',
+        components: {
+            Task
+        }
+    }
 
 
 ## Authors
