@@ -180,6 +180,16 @@ file importing your task component that recives the object
     }
 
 
+## Conditionals with Vue Bindings
+
+1. Add a v binding with : to tell vue to check conditional
+:class="[conditional ? code : else code, 'defaults here']"
+here is an exampe from components/Task.vue it adds a class if
+conditional is meet plus appends task class the default
+    <div :class="[task.reminder ? 'reminder' : '', 'task']">
+2. Add reminder class to css to color coat background via CSS
+
+
 ## Authors
 
 👤 **Miguel Angel Enciso Sanchez**
