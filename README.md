@@ -31,6 +31,26 @@ live inside repos ./tasks folder you can cd there and run "npm run serve".
     To get localhost going type/run this command in the terminal. This
     should launch and open it in your browser
 
+## Making Components with Vue
+
+Vue makes it easy to make a component and its structure is also easy to follow. What makes it unique is that the template style and script live inside the vue file. You can think of this like a controller where you can write or link CSS, template and script files. 
+
+1. Step one make a new file with the name of your new component and a 
+vue extention in the components folder. 
+    Header.vue lives in ./tracker/src/components/Header.vue
+2. You must then import this new component in your App.vue file
+    import Header from './components/Header.vue'
+3. Also you will need to register this component for vue to access it
+    export default {
+        name: 'App',
+        components: {
+            Header
+        }
+    }
+4. You can now use your component as expected in your view calling your
+new components tagname 
+    <Header / >
+
 ## Authors
 
 👤 **Miguel Angel Enciso Sanchez**
