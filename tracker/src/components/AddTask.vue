@@ -1,5 +1,5 @@
 <template>
-    <form class="add-form">
+    <form @submit="taskSubmit" class="add-form">
         <div class="form-control">
             <label>Task</label>
             <input type="text" v-model="text" name="text" placeholder="Add Task" />
@@ -24,6 +24,29 @@ export default {
             text: '',
             day: '',
             reminder: false
+        }
+    },
+    methods: {
+        taskSubmit(e) {
+            e.preventDefault()
+            //validation task added
+            if(!this.text){
+                alert('Please add a task...')
+                return
+            }
+            //create new task with new values
+            const newTask = {
+                id: Math.floor(Math.random() * 100000),
+                text: this.text,
+                day: this.day,
+                reminder: this.reminder
+            }
+            //emit to parent 
+            this.$emit('add-task', newTask)
+            //clear form 
+            this.text = '',
+            this.day = '',
+            this.reminder = false
         }
     }
 }

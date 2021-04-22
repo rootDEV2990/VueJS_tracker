@@ -228,6 +228,60 @@ method we can put this above our test data check the file for an example.
         },
     }
 
+## V-model, Values and Two Way Bindings
+
+1. First we need to bind empty values to our export default. We want to 
+save text, day, and reminder values so in export default we create an 
+object to be returned. Check ./tracker/src/components/AddTrask.vue
+    
+    data() {
+        return {
+            text: '',
+            day: '',
+            reminder: false
+        }
+    }
+2. We can then create a form that will recive our input values and in the
+input tags or radio buttons we refrence the v-model binding. The name in 
+the quotes must be declared as empty for v-model to rewrite.
+    <input v-model="text" type="text" placeholder="Add text">
+3. Direct the form to the method that will handle the incoming data. In
+the form tag add @submit="" and declare a new method in quotes.
+    <form @submit="taskSubmit" class="add-form">
+4. We can now declare our new method so we can use it. In your script 
+add a methods object as an export default.
+    methods: {
+        taskSubmit() {
+            ..your method code goes here..
+        }
+    }
+5. The event is passed to the taskSubmit function to extract the user
+input values.
+    taskSubmit(e) {
+        e.preventDefault()
+    }   
+6. Once the event is available the medthod can then update values to our
+text, day and reminder keys. We contruct a new object that will later be 
+pushed to our tasks array
+    const newTask = {
+        id: Math.floor(Math.random() * 100000),
+        text: this.text,
+        day: this.day,
+        reminder: this.reminder
+    }
+7. We can use the $emit global variable in our taskSubmit() function
+to emit the new object with its values to the parent.
+    this.$emit('add-task', newTask)
+8. In our parent we can then catch the ruturn value and pass it to 
+a method in the components html tag @add-task="" just name your 
+new method in the quotes check ./tracker/src/App.js for an example.
+    <AddTask @add-task="addTask" />
+9. We can then update our method to run through the tasks array and 
+append the new recived task object.
+    addTask(task) {
+        this.tasks = [...this.tasks, task]
+    }
+
 
 ## Authors
 
