@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Tasks"/>
-    <Tasks :tasks="tasks"/>
+    <Tasks @delete-task="deleteTask" :tasks="tasks"/>
   </div>
 </template>
 
@@ -20,6 +20,12 @@ export default {
     return {
       tasks: []
     }
+  },
+  //methods
+  methods: {
+    deleteTask(id) {
+      console.log('task', id)
+    },
   },
   //populates tasks: []
   created() {

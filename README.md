@@ -188,6 +188,58 @@ here is an exampe from components/Task.vue it adds a class if
 conditional is meet plus appends task class the default
     <div :class="[task.reminder ? 'reminder' : '', 'task']">
 2. Add reminder class to css to color coat background via CSS
+and @click with js
+
+
+## Emiting Events with Children and Parents
+
+To send data from child to parrent you can use Events. Events are how 
+Vue relates functions between parent child hierarchy.
+
+1. Grab value from page to pass to parent with @click="" check the 
+./tracker/src/components/Task.vue for an example.
+    <i @click="onDelete(task.id)"></i>
+2. Add method that will handle varriable in same components script 
+here we can declare the function in our components methods and asing it 
+the name of 'delete-task' for parent files to use as @delete-task
+check the ./tracker/src/components/Task.vue for an example.
+    methods: {
+        onDelete(id) {
+            this.$emit('delete-task', id)
+        },
+    },
+3. Our parent up a level Tasks.vue will recive the value returnded 
+from this even if we call is via @delete-task check the 
+file ./tracker/src/components/Tasks.vue for an example.
+    <Task @delete-task="" />
+4. To pass this over to the parent once more where we can emit another
+event again heres ./tracker/src/components/Tasks.vue again but this time
+we emit once again
+    <Task @delete-task="$emit('delete-task', task.id)" />
+5. This time since the function is refrenced from the child we must edit 
+our export default {} to export this events value. We can follow this as
+pattern to go up as many levels as needed.
+    emits: ['delete-task']
+6. Our final level will recive the data and fire a function to use this
+data be it to write, mutate, or delete from our src data heres our top
+level where the data is recived ./tracker/src/App.vue
+    <Tasks @delete-task="deleteTask" />
+Notice we still refrence the @delete-task event that returns our value
+passing it to the new function delelteTask we will create in our script
+bellow.
+7. In our main file ./tracker/src/App.vue we will create our deleteTask
+method we can put this above our test data check the file for an example.
+    methods: {
+        deleteTask(id) {
+            ..code to delete from array goes here...
+        },
+    }
+
+
+    
+
+
+
 
 
 ## Authors
