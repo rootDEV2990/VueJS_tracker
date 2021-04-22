@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <Header title="Tasks"/>
-    <AddTask @add-task="addTask" />
+    <div v-if="showTaskForm">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks"/>
   </div>
 </template>
@@ -39,7 +41,8 @@ export default {
   //test data returning array 
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showTaskForm: false
     }
   },
   //populates tasks: []
