@@ -198,16 +198,9 @@ Vue relates functions between parent child hierarchy.
 
 1. Grab value from page to pass to parent with @click="" check the 
 ./tracker/src/components/Task.vue for an example.
-    <i @click="onDelete(task.id)"></i>
-2. Add method that will handle varriable in same components script 
-here we can declare the function in our components methods and asing it 
-the name of 'delete-task' for parent files to use as @delete-task
-check the ./tracker/src/components/Task.vue for an example.
-    methods: {
-        onDelete(id) {
-            this.$emit('delete-task', id)
-        },
-    },
+    <i @click="$emit('delete-task', task.id)"></i>
+2. We can do this as many levels as needed but after the first level 
+you must implement the next step.
 3. Our parent up a level Tasks.vue will recive the value returnded 
 from this even if we call is via @delete-task check the 
 file ./tracker/src/components/Tasks.vue for an example.
@@ -234,12 +227,6 @@ method we can put this above our test data check the file for an example.
             ..code to delete from array goes here...
         },
     }
-
-
-    
-
-
-
 
 
 ## Authors

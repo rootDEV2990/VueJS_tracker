@@ -1,31 +1,42 @@
 <template>
   <div class="container">
     <Header title="Tasks"/>
-    <Tasks @delete-task="deleteTask" :tasks="tasks"/>
+    <AddTask />
+    <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks"/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Tasks
+    Tasks,
+    AddTask
+  },
+  //methods
+  methods: {
+    //delete method
+    deleteTask(id) {
+      //pop up window to verify you want to delete
+      if (confirm('Are you sure?')) {
+        //return results of array if value does not == id
+        this.tasks = this.tasks.filter((task) => task.id !== id)
+      }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task )
+    }
   },
   //test data returning array 
   data() {
     return {
       tasks: []
     }
-  },
-  //methods
-  methods: {
-    deleteTask(id) {
-      console.log('task', id)
-    },
   },
   //populates tasks: []
   created() {
